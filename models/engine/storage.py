@@ -5,6 +5,7 @@ from models.base_model import Base
 from models.users import User
 from models.inquiries import Inquiry
 from models.reports import Report
+from models.report_assignments import ReportAssignment
 from os import getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
