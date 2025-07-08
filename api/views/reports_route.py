@@ -72,7 +72,7 @@ def retrieve_report_assignments(id):
     if not report:
         return jsonify({"error": "Report not found"}), 404
 
-    assignments = report.report_assignments
+    assignments = report.assignments
     if not assignments:
         return jsonify({"error": "No assignments found for this report"}), 404
 
