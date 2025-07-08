@@ -6,4 +6,4 @@ class Inquiry(Base, BaseModel):
     name = Column(String(100), nullable=False)
     email = Column(String(100), nullable=False)
     message = Column(String(100), nullable=False)
-    status = Column(Integer, default=pending)
+    status = Column(String(100), default="pending")

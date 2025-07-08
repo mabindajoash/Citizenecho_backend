@@ -66,13 +66,13 @@ def delete_report(id):
     return jsonify({}), 200
 
 @app_views.route("/reports/<id>/assignments", methods=['GET'])
-def get_report_assignments(id):
+def retrieve_report_assignments(id):
     """Retrieve all assignments for a specific report."""
     report = storage.get_by(Report, id=id)
     if not report:
         return jsonify({"error": "Report not found"}), 404
 
-    assignments = report.assignments
+    assignments = report.repot_assignments
     if not assignments:
         return jsonify({"error": "No assignments found for this report"}), 404
 

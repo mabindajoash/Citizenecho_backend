@@ -4,7 +4,7 @@ from api.views import app_views
 from models.users import User
 from models.report_assignments import ReportAssignment
 
-@app_views.route("/users/<id>", method=['GET'])
+@app_views.route("/users/<id>", methods=['GET'])
 def get_user(id):
     """Retrieve a user by ID."""
     user = storage.get_by(User, id=id)

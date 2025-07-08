@@ -25,19 +25,7 @@ class DBStorage:
 
     def all(self, cls=None):
         """retrieve all objects of a class"""
-        objects = {}
-        if cls:
-            query = self.__session.query(cls).all()
-            for obj in query:
-                key = f"{type(obj).__name__}.{obj.id}"
-                objects[key] = obj.to_dict()
-        else:
-            for class_ in [Inquiry, Report, User]:
-                query = self.__session.query(class_).all()
-                for obj in query:
-                    key = f"{type(obj).__name__}.{obj.id}"
-                    objects[key] = obj.to_dict()
-        return objects
+        return self.__session.query(cls).all()
 
     def get_by(self, cls, **kwargs):
         return self.__session.query(cls).filter_by(**kwargs).first()
