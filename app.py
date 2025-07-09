@@ -8,6 +8,7 @@ from models import storage
 app = Flask(__name__)
 app.register_blueprint(app_views)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+app.config['SECRET_KEY'] = 'citizenecho_api'
 
 @app.teardown_appcontext
 def close_db(error):

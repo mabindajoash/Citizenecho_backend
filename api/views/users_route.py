@@ -1,4 +1,5 @@
 from models import storage
+from werkzeug.security import generate_password_hash
 from flask import make_response, jsonify, abort, request
 from api.views import app_views
 from models.users import User
@@ -20,7 +21,7 @@ def get_users():
     if not users:
         return jsonify({"error": "No users found"}), 404
 
-@app_views.route("/users", methods=['POST'])
+@app_views.route("/users", methods=["POST"])
 def create_user():
     """Create a new user."""
     data = request.get_json()
@@ -28,11 +29,12 @@ def create_user():
         return jsonify({"error": "Not a JSON"}), 400
     if 'email' not in data or 'password' not in data or 'name' not in data:
         return jsonify({"error": "Missing required fields"}), 400
-    
+
     new_user = User(**data)
+
     storage.new(new_user)
     storage.save()
-    
+
     return jsonify(new_user.to_dict()), 201
 
 @app_views.route("/users/<id>", methods=['PUT'])
@@ -66,14 +68,14 @@ def delete_user(id):
     
     return jsonify({}), 200
 
-@app_views.route("/api/users/<id>/assigned-reports", methods=['GET'])
-def get_assigned_reports(user_id):
+@app_views.route("/users/<id>/assigned-reports", methods=['GET'])
+def get_assigned_reports(id):
     """Retrieve all reports assigned to a user."""
     user = storage.get_by(User, id=id)
     if not user:
         return jsonify({"error": "User not found"}), 404
     
-    assigned_reports = storage.get_all_by(ReportAssignment, user_id=user_id)
+    assigned_reports = storage.get_all_by(ReportAssignment, user_id=id)
     if not assigned_reports:
         return jsonify({"error": "No assigned reports found"}), 404
     

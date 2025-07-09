@@ -34,10 +34,10 @@ def get_report_assignments():
         return jsonify({"error": "No report assignments found"}), 404
     return jsonify([ra.to_dict() for ra in report_assignments]), 200
 
-app_views.route("/report-assignments/<assignment_id>", methods=['DELETE'])
-def delete_report_assignment(assignment_id):
+app_views.route("/report_assignments/<id>", methods=['DELETE'])
+def delete_report_assignment(id):
     """Delete a report assignment by ID."""
-    report_assignment = storage.get_by(ReportAssignment, id=assignment_id)
+    report_assignment = storage.get_by(ReportAssignment, id=id)
     if not report_assignment:
         return jsonify({"error": "Report assignment not found"}), 404
 
