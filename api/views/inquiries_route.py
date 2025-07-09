@@ -18,7 +18,7 @@ def get_inquiries():
     inquiries = storage.all(Inquiry)
     if not inquiries:
         return jsonify({"error": "No inquiries found"}), 404
-    return jsonify([inquiry.to_dict() for inquiry in inquiries.values()]), 200
+    return jsonify([inquiry.to_dict() for inquiry in inquiries]), 200
 
 @app_views.route("/inquiries", methods=['POST'])
 def create_inquiry():

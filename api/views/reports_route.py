@@ -17,7 +17,7 @@ def get_reports():
     reports = storage.all(Report)
     if not reports:
         return jsonify({"error": "No reports found"}), 404
-    return jsonify([report.to_dict() for report in reports.values()]), 200
+    return jsonify([report.to_dict() for report in reports]), 200
 
 @app_views.route("/reports", methods=['POST'])
 def create_report():

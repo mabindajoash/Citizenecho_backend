@@ -32,7 +32,7 @@ def get_report_assignments():
     report_assignments = storage.all(ReportAssignment)
     if not report_assignments:
         return jsonify({"error": "No report assignments found"}), 404
-    return jsonify([ra.to_dict() for ra in report_assignments.values()]), 200
+    return jsonify([ra.to_dict() for ra in report_assignments]), 200
 
 app_views.route("/report-assignments/<assignment_id>", methods=['DELETE'])
 def delete_report_assignment(assignment_id):

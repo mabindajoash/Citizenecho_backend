@@ -16,7 +16,7 @@ def get_user(id):
 def get_users():
     """Retrieve all users."""
     users = storage.all(User)
-    return jsonify([user.to_dict() for user in users.values()]), 200
+    return jsonify([user.to_dict() for user in users]), 200
     if not users:
         return jsonify({"error": "No users found"}), 404
 
